@@ -12,4 +12,21 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+<!--스프링MVC를 실행하기 위해 프론트컨트롤러 역할을 하는 DispatcherServlet을 설정-->
+    <servlet> <!--DispatcherServlet을 등록-->
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/servlet-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>  <!--톰캑로딩 시 클래스를 미리 로딩해 두기 위한 설정-->
+    </servlet>
+
+    <servlet-mapping>   <!--DispatcherServlet이 모든 경로의 요청에 대한 처리를 담당하기 때문에 /로 지정-->
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 </web-app>
