@@ -22,5 +22,15 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+<!--Formatter를 적용(FormattingConversionServiceBean 객체를 스프링의 Bean으로 등록하고 이 안에 작성한 LocalDateFormatter를 추가-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="org.zerock.springex.controller.formatter.LocalDateFormatter" />
+            </set>
+        </property>
+    </bean>
+<!--conversionService를 Bean으로 등록한 후 스프링 MVC를 처리할 때 이용한다는 것을 지정-->
+    <mvc:annotation-driven conversion-service="conversionService" />
     <context:component-scan base-package="org.zerock.springex.controller" />
 </beans>
