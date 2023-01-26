@@ -2,6 +2,7 @@ package org.zerock.springex.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,5 +37,12 @@ public class SampleController {
     public void ex3(LocalDate dueDate) {    // 날짜 관련 타입의 파라미터 수집은 에러발생
         log.info("ex3..........");
         log.info("dueDate: " + dueDate);
+    }
+
+    @GetMapping("/ex4")
+    public void ex4(Model model) {  // 모델이라고 부르는 데이터를 객체로 이용해서 JSP로 전달
+        log.info("------------------------");
+        // Model에는 addAttribute()메소드를 이용해서 뷰에 전달할 '이름'과'값'을 지정할 수 있다.
+        model.addAttribute("message", "Hello World");
     }
 }
