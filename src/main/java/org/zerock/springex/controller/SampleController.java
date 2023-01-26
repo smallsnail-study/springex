@@ -4,7 +4,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.zerock.springex.dto.TodoDTO;
 
 import java.time.LocalDate;
 
@@ -45,4 +47,13 @@ public class SampleController {
         // Model에는 addAttribute()메소드를 이용해서 뷰에 전달할 '이름'과'값'을 지정할 수 있다.
         model.addAttribute("message", "Hello World");
     }
+
+    @GetMapping("/ex4_1")   // 파라미터가 getter/setter를 이용하는 Java Beans형식의 사용자정의 클래스인 경우
+    public void ex4_1(TodoDTO todoDTO, Model model) {   // 자동으로 변수명이 todoDTO로 생성된다.
+        log.info(todoDTO);
+    }
+    /* 자동으로 생성된 변수명 todoDTO 외에 다른 이름을 사용하고 싶다면 @ModelAttribute()로 지정하면 된다.
+    public void ex4_1(@ModelAttribute("dto") TodoDTO todoDTO, Model model) {    // 변수명 dto
+        log.info(todoDTO);
+    } */
 }
