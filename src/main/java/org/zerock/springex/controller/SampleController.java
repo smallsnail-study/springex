@@ -69,6 +69,13 @@ public class SampleController {
 
     @GetMapping("/ex6")
     public void ex6() {
+    }
 
+    @GetMapping("/ex7") // 예외처리를 테스트하기 위해 고의로 예외를 발생하는 코드
+    public void ex7(String p1, int p2) {
+        log.info("p1.........." + p1);
+        log.info("p2.........." + p2);
+//      /ex7?p1=AAA&p2=BBB 고의로 예외를 발생시켜본다.
+//      p2의 BBB를 int타입으로 변환할 수 없기 때문에 NumberFormatException 예외가 발생한다.
     }
 }
