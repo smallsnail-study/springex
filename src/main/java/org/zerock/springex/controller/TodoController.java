@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.zerock.springex.dto.TodoDTO;
 
 @Controller
 @RequestMapping("/todo")
@@ -29,7 +30,8 @@ public class TodoController {
     }
 
     @PostMapping("/register")   // POST방식으로 Todo등록을 처리한다.
-    public void registerPOST() {
+    public void registerPOST(TodoDTO todoDTO) {     // 파라미터를 TodoDTO로 사용한다.(자동형변환)
         log.info("POST todo register..............");
+        log.info(todoDTO);
     }
 }
