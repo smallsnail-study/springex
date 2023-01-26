@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.springex.dto.TodoDTO;
 
 import java.time.LocalDate;
@@ -56,4 +57,18 @@ public class SampleController {
     public void ex4_1(@ModelAttribute("dto") TodoDTO todoDTO, Model model) {    // 변수명 dto
         log.info(todoDTO);
     } */
+
+    @GetMapping("/ex5") // PRG패턴(POST-Redirect-GET)을 처리하기 위해서 스프링MVC에서 제공하는 RedirectAttributes
+    public String ex5(RedirectAttributes redirectAttributes) {  // RedirectAttributes를 파라미터로 추가해주기만 하면 자동생성
+
+        redirectAttributes.addAttribute("name", "ABC");
+        redirectAttributes.addFlashAttribute("result", "success");
+
+        return "redirect:/ex6";     // ex5를 호출하면 서버에서 /ex6 경로를 호출하라고 알려준다.
+    }
+
+    @GetMapping("/ex6")
+    public void ex6() {
+
+    }
 }
